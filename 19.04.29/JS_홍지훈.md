@@ -92,3 +92,29 @@ eval("d = new Date;");			// => Mon Apr 29 2019 20:40:10 GMT+0900 (한국 표준�
 ```js
 x > 0 ? x : -x             // x의 절대 값을 구한다.
 ```
+```js
+greeting = "hello " + (username ? username : "there");
+// 'username'이 true 즉, username에 변수가 정의되어 있지않다면 "there"를 사용하는것 문장
+```
+
+
+### `typeof` 연산자
+```js
+(type value == "string") ? "'" + value "'" : value;
+// value의 타입이 문자열이라면 문자열 'value'를 반환
+```
+
+#
+
+### `delete` 연산자
+
+```js
+var o = {x:1, y:2};
+delete o.x;						// return true
+"x" in o;						// false
+
+var array = [1,2,3];
+delete a[2];
+2 in a;							// false
+a.length;						// ✔️ 3 배열의 길이는 변하지 않는다.
+```
