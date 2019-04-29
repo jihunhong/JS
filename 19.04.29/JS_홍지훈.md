@@ -20,7 +20,7 @@ var square = function(x){return x*x;}
 ### 📱 `연산자`
 
 |OP| description   | return   |
-|---|---|---|---|
+|---|---|---|
 | delete  | 프로퍼티를 제거  |  boolean |
 | typeof  | 피연산자의 타입 | 문자열  |
 | instanceof  | 객체 타입 확인 | boolean |
