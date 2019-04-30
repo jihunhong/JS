@@ -20,7 +20,7 @@ var square = function(x){return x*x;}
 ### 📱 `연산자`
 
 |OP| description   | return   |
-|---|---|---|---|
+|---|---|---|
 | delete  | 프로퍼티를 제거  |  boolean |
 | typeof  | 피연산자의 타입 | 문자열  |
 | instanceof  | 객체 타입 확인 | boolean |
@@ -56,13 +56,13 @@ var square = function(x){return x*x;}
 
 ```js
 var point = { x:1, y:1};			
-"x" in point								// true
-"z" in point								// false
-"toString" in point							// true : 상속된 프로퍼티
+"x" in point						// true
+"z" in point						// false
+"toString" in point					// true : 상속된 프로퍼티
 var data = [7,8,9];
-"0" in data								// true : 배열에 0번째 원소가 있어서
-1 in data								// true : 배열에 1번째 원소가 있기 때문에
-3 in data								// false
+"0" in data						// true : 배열에 0번째 원소가 있어서
+1 in data						// true : 배열에 1번째 원소가 있기 때문에
+3 in data						// false
 ```
 
 ### `instanceof` 연산자
