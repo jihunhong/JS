@@ -73,7 +73,7 @@ Object.defineProperty(a, "length", {writable : false});
 따라서, 배열의 length 프로퍼티 값 역시 해당 원소의 인덱스보다 작은 값으로 설정할 수 없다.**
 
 
-![길이](./image/bg_capture02.png)
+![길이](./image/bg_capture02.PNG)
 
 #### 5. 배열에 원소 추가/삭제
 
@@ -97,7 +97,7 @@ Object.defineProperty(a, "length", {writable : false});
   delete a[0];
   0 in a // false
   ```
-  ![길이](./image/bg_capture03.png)
+  ![길이](./image/bg_capture03.PNG)
 
 #### 6. 배열 순회
 **`for loop`**
