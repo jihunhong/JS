@@ -146,22 +146,55 @@ matrix[][]
 
 - `forEach()` : 배열 순회
   ※ 배열의 모든 원소가 순회되기 전에는 종료되지 않는다는 것! (break/return 불가)
+  ```js
+  var data = [1,2,3,4,5];                           // An array to sum
+  // Compute the sum of the array elements
+  var sum = 0;                                      // Start at 0
+  data.forEach(function(value) { sum += value; });  // Add each value to sum
+  sum                                               // => 15
+
+  // Now increment each array element
+  data.forEach(function(v, i, a) { a[i] = v + 1; });
+  data            
+  ```
 - `map()` : 배열의 각 원소를 함수에 전달하고, 해당 함수의 반환 값을 배열에 담아 반환
   ※ map() 메서드에 인자로 전달된 함수는 반드시 값을 반환해야 한다.
+  ```js
+  a = [1, 2, 3];
+  b = a.map(function(x) { return x*x; });  // b is [1, 4, 9]
+  ```
 - `filter()`: 배열의 일부분을 반환
   - 전달 함수는 조건자 함수(predicate) - 항상 true 또는 false 값을 반환하는 함수 여야 한다.
   - 반환 값이 ture이면 조건자 함수에 전달된 값은 filter가 반환할 배열에 추가됨
+  ```js
+  a = [5, 4, 3, 2, 1];
+  smallvalues = a.filter(function(x) { return x < 3 });   // [2, 1]
+  everyother = a.filter(function(x,i) { return i%2==0 }); // [5, 3, 1]
+  ```
 - `every() , some()`
   - every() :전달 인자로 넘긴 함수가 배열의 모든 원소에 대하여 ture를 반환하는 경우, ever() 메서드는 true를 반환
   - some() : 배열의 일부 원소에 대해 ture를 반환하는 경우 some()은 true를 반환
-  ```
-  반환 값이 결정되면 배열의 원소 순회를 중단한다.
+  - 반환 값이 결정되면 배열의 원소 순회를 중단한다.
   => some()은 조건함수의 반환 값이 ture를 만족하는 첫번째 원소를 만나면 순회를 멈추고 즉시 ture를 반환하므로, 
   모두 false인 경우에만 전체 순회.
   => every()는 반환 값이 false인 원소를 만나면 즉시 false를 반환, 모두 true인 경우에만 전체 순회
+  ```js
+  a = [1,2,3,4,5];
+  a.every(function(x) { return x < 10; })      // => true: all values < 10.
+  a.every(function(x) { return x % 2 === 0; }) // => false: not all values even.
+  
+  a = [1,2,3,4,5];
+  a.some(function(x) { return x%2===0; })  // => true a has some even numbers.
+  a.some(isNaN)                            // => false: a has no non-numbers.
   ```
 - `reduce() , reduceRight()`
   - reduce()는 어떻게든 배열 원소 중 두 값을 하나로 결합하면서 크기를 줄이고, 마지막 남은 값을 반환한다. 첫번째 인자는 함수를 사용해 계산된 값의 누적된 결과.
+  ```js
+  var a = [1,2,3,4,5]
+  var sum = a.reduce(function(x,y) { return x+y }, 0);     // Sum of values
+  var product = a.reduce(function(x,y) { return x*y }, 1); // Product of values
+  var max = a.reduce(function(x,y) { return (x>y)?x:y; }); // Largest value
+  ```
 -  `index() , lastIndexOf() `
 
 
