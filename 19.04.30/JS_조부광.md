@@ -14,18 +14,18 @@
 - **Array.prototpye의 프로퍼티들을 상속 받음**
 
 #### 1. 배열 만들기
-**`[] 안에 배열의 원소를 쉼표(,)로 구분`**
-```js
-var test = [1,3,true,"a", {x:1, y:2}, 10];
-var a = new Array();
-var b = new Array(10); // 미리 공간 할당
-var c = new Array(3,2,1,"test,test");
-```
-**`배열 리터럴에서 빠진 부분  → undefined`**
-```js
-var undefs = [,,]; // 원소 값은 모두 undefined
-//마지막 원소 다음에 쉼표를 추가할 수 있으므로 undefs의 원소는 세개가 아니라 두개
-```
+- [] 안에 배열의 원소를 쉼표(,)로 구분
+  ```js
+  var test = [1,3,true,"a", {x:1, y:2}, 10];
+  var a = new Array();
+  var b = new Array(10); // 미리 공간 할당
+  var c = new Array(3,2,1,"test,test");
+  ```
+- 배열 리터럴에서 빠진 부분  → undefine`
+  ```js
+  var undefs = [,,]; // 원소 값은 모두 undefined
+  //마지막 원소 다음에 쉼표를 추가할 수 있으므로 undefs의 원소는 세개가 아니라 두개
+  ```
 
 #### 2. 배열의 원소 읽고 쓰기
 - `[]연산자` (객체 프로퍼티 접근 때 쓰는 []와 똑같이 동작)
@@ -37,21 +37,21 @@ a[-1] // undefined
 ```
 
 
-#### 3. 희소배열
-`배열에 속한 원소의 위치가 비연속적인 배열`
+### 3. 희소배열
+배열에 속한 원소의 위치가 비연속적인 배열
 * length 프로퍼티의 값은 원소의 개수보다 항상 크다
-```js
-a[1000] = 0 // length = 1001
-```
-```
+  ```js
+  a[1000] = 0 // length = 1001
+  ```
+
 - 보통배열보다 느리다
 - 메모리 많이 사용
 - 원소 찾는데 시간 오래 걸림
-```
+
 
 #### 4. 배열의 길이
 **length : 자바스크립트에서 객체와 배열을 구분하는 중요한 특징**
-배열에서 가장 큰 인덱스 값보다 하나 더 큰 값
+  (배열에서 가장 큰 인덱스 값보다 하나 더 큰 값)
 
 ```
   만약, 음이 아니며 기존 length 값보다 작은 정수 n을 length 값으로 할당할 경우,
@@ -60,9 +60,9 @@ a[1000] = 0 // length = 1001
 
 ![길이](./image/bg_capture01.PNG)
 
-`
+
 ECMA5에서는 Object.defineProperty()메소드를 사용해 length 프로퍼티를 읽기 전용으로 만들 수 있다.
-`
+
 ```js
 a = [1,2,3];
 Object.defineProperty(a, "length", {writable : false});
@@ -92,12 +92,11 @@ Object.defineProperty(a, "length", {writable : false});
 - delete 연산자로 원소 삭제 가능 (해당원소에 undefined 값 할당과 같음)
   ```js
   a = [1, 2, 3];
-  delete a[0]; 
-  0 in a // false 
   delete a[0];
   0 in a // false
   ```
   ![길이](./image/bg_capture03.PNG)
+
 
 #### 6. 배열 순회
 **`for loop`**
@@ -111,9 +110,7 @@ data.forEach(x=>{
 })
 ```
 #### 7. 다차원 배열
-
-진정한 의미의 다차원 배열 X 배열의 배열을 사용해 다차원 배열을 흉내냄 
-
+진정한 의미의 다차원 배열 X 배열의 배열을 사용해 다차원 배열을 흉내냄
 [] 연산자 두번 사용
 ```js
 matrix[][]
@@ -121,46 +118,61 @@ matrix[][]
 #### 8. 배열 메서드
 #### `join()` :
   배열의 모든 원소 문자열로 반환
-#### `reserve()` : 
+#### `reserve()` :
   배열의 원소 순서 뒤집어서 반환
 #### `sort()` :
-  전달인자 없으면 알파벳순 정렬 
-#### `concat()` : 
+  전달인자 없으면 알파벳순 정렬
+#### `concat()` :
   기존 배열의 원소에 전달인자들을 추가한 새로운 배열 반환
-#### `slice()` : 
-  부분배열 반환 
+#### `slice()` :
+  부분배열 반환
   전달인자 2개 (시작위치, 끝위치)
 #### `splice()` :
   원소를 삽입하거나 원소를 제거 → 다른 메서드들과 달리 호출 대상 배열을 바로 수정
 #### `push() , pop()`
 #### `unshift() ,  shift()`
-#### `toString() ,  toLocaleString()`  : 
-  join() 과 동일 
+#### `toString() ,  toLocaleString()`  :
+  join() 과 동일
 
 
 
 
 #### 9. ECMAScript 5 배열 메서드
-#### `forEach()`
-`※ 배열의 모든 원소가 순회되기 전에는 종료되지 않는다는 것! (break/return 불가)`
-#### `map()`
-#### `filter()`
-#### `every() , some()`
-#### `reduce , reduceRight()`
-#### `index() , lastIndexOf() `
+```
+첫번째 전달 인자로 지정한 함수는 세 개의 전달인자를 가지고 호출되는데,
+이는 배열 원소의 값과 원소의 인덱스 값 , 배열 그 자체이다.
+```
+
+
+- `forEach()` : 배열 순회
+  ※ 배열의 모든 원소가 순회되기 전에는 종료되지 않는다는 것! (break/return 불가)
+- `map()` : 배열의 각 원소를 함수에 전달하고, 해당 함수의 반환 값을 배열에 담아 반환
+  ※ map() 메서드에 인자로 전달된 함수는 반드시 값을 반환해야 한다.
+- `filter()`: 배열의 일부분을 반환
+  - 전달 함수는 조건자 함수(predicate) - 항상 true 또는 false 값을 반환하는 함수 여야 한다.
+  - 반환 값이 ture이면 조건자 함수에 전달된 값은 filter가 반환할 배열에 추가됨
+- `every() , some()`
+  - every() :전달 인자로 넘긴 함수가 배열의 모든 원소에 대하여 ture를 반환하는 경우, ever() 메서드는 true를 반환
+  - some() : 배열의 일부 원소에 대해 ture를 반환하는 경우 some()은 true를 반환
+  ```
+   반환 값이 결정되면 배열의 원소 순회를 중단한다.
+  즉, some()은 조건함수의 반환 값이 ture를 만족하는 첫번째 원소를 만나면 순회를 멈추고 즉시 ture를 반환하므로, 모두 false인 경우에만 전체 순회.
+  every()는 반환 값이 false인 원소를 만나면 즉시 false를 반환, 모두 true인 경우에만 전체 순회
+  ```
+- `reduce() , reduceRight()`
+  - reduce()는 어떻게든 배열 원소 중 두 값을 하나로 결합하면서 크기를 줄이고, 마지막 남은 값을 반환한다. 첫번째 인자는 함수를 사용해 계산된 값의 누적된 결과.
+-  `index() , lastIndexOf() `
 
 
 
 #### 10. 배열 타입
 특정 객체가 배열인지 판단하기
-
-```js 
-ECMA5 
+```js
+ECMA5
 Array.isArray()
 ```
 
-ECMAScript 5 이전엔 typeof가 모든 객체를 object로 반환 
-
+ECMAScript 5 이전엔 typeof가 모든 객체를 object로 반환
 ``` js
 [] instanceof Array // true
 {} instanceof Array // false
@@ -168,7 +180,6 @@ ECMAScript 5 이전엔 typeof가 모든 객체를 object로 반환
 ```
 
 객체의 class 속성을 검사하는 방법 (클래스 속성은 항상 Array 값을 가지고 있다)
-
 ```js
 ECMA 3
 var isArray = Function.isArray || function(o) {
@@ -194,13 +205,14 @@ var isArray = Function.isArray || function(o) {
 
 
 #### 12. 문자열을 배열처럼 사용하기
-**`대부분의 최근 브라우저에서는 문자열은 읽기 전용 배열`**
-```js
-각 문자 접근 방법 : charAt() 또는 []
-typeof 문자열 // "string"
-Array.isArray(문자열) //false
-```
-**`문자열에 범용 배열 메서드들을 바로 사용할 수 있다!`**
+- **대부분의 최근 브라우저에서는 문자열은 읽기 전용 배열**
+ ```js
+ 각 문자 접근 방법 : charAt() 또는 []
+ typeof 문자열 // "string"
+ Array.isArray(문자열) //false
+ ```
+
+- **문자열에 범용 배열 메서드들을 바로 사용할 수 있다!**
 ```js
 s = "JavaScript";
 Array.prototype.join.call(s," "); // "J a v a S c r i p t"
@@ -210,4 +222,4 @@ Array.prototype.filter.call(s,
   }).join(""); //문자열에서 모음 제거 "JvScrpt"
 ```
 
-**`읽기 전용 배열이므로 배열 수정 메소드 push(),sort(),reverse(),splice() 등는 동작하지 않음(오류는 나지 않는다)`**
+- 읽기 전용 배열이므로 배열 수정 메소드 push(),sort(),reverse(),splice() 등는 동작하지 않음(오류는 나지 않는다)
