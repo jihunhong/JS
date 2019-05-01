@@ -99,8 +99,8 @@ Object.defineProperty(a, "length", {writable : false});
 
 
 #### 6. 배열 순회
-**`for loop`**
-**`for/in loop`**
+**`for loop`**<br>
+**`for/in loop`**<br>
 **`forEach()` : 배열의 원소가 인덱스 순서대로 하나씩 넘어오면서 순회한다.**  
 ```js
 var data = [1,2,3,4,5];
@@ -155,9 +155,10 @@ matrix[][]
   - every() :전달 인자로 넘긴 함수가 배열의 모든 원소에 대하여 ture를 반환하는 경우, ever() 메서드는 true를 반환
   - some() : 배열의 일부 원소에 대해 ture를 반환하는 경우 some()은 true를 반환
   ```
-   반환 값이 결정되면 배열의 원소 순회를 중단한다.
-  즉, some()은 조건함수의 반환 값이 ture를 만족하는 첫번째 원소를 만나면 순회를 멈추고 즉시 ture를 반환하므로, 모두 false인 경우에만 전체 순회.
-  every()는 반환 값이 false인 원소를 만나면 즉시 false를 반환, 모두 true인 경우에만 전체 순회
+  반환 값이 결정되면 배열의 원소 순회를 중단한다.
+  => some()은 조건함수의 반환 값이 ture를 만족하는 첫번째 원소를 만나면 순회를 멈추고 즉시 ture를 반환하므로, 
+  모두 false인 경우에만 전체 순회.
+  => every()는 반환 값이 false인 원소를 만나면 즉시 false를 반환, 모두 true인 경우에만 전체 순회
   ```
 - `reduce() , reduceRight()`
   - reduce()는 어떻게든 배열 원소 중 두 값을 하나로 결합하면서 크기를 줄이고, 마지막 남은 값을 반환한다. 첫번째 인자는 함수를 사용해 계산된 값의 누적된 결과.
