@@ -92,13 +92,22 @@ Object.defineProperty(a, "length", {writable : false});
 - delete 연산자로 원소 삭제 가능 (해당원소에 undefined 값 할당과 같음)
   ```js
   a = [1, 2, 3];
+<<<<<<< Updated upstream
   delete a[0]; 
   0 in a // false 
+=======
+  delete a[0];
+  0 in a // false
+>>>>>>> Stashed changes
   ```
   ![길이](./image/bg_capture03.png)
 
 
+<<<<<<< Updated upstream
 #### 6. 배열 순회 
+=======
+#### 6. 배열 순회
+>>>>>>> Stashed changes
 **`for loop`**
 **`for/in loop`**
 **`forEach()` : 배열의 원소가 인덱스 순서대로 하나씩 넘어오면서 순회한다.**  
@@ -110,7 +119,11 @@ data.forEach(x=>{
 })
 ```
 #### 7. 다차원 배열
+<<<<<<< Updated upstream
 진정한 의미의 다차원 배열 X 배열의 배열을 사용해 다차원 배열을 흉내냄 
+=======
+진정한 의미의 다차원 배열 X 배열의 배열을 사용해 다차원 배열을 흉내냄
+>>>>>>> Stashed changes
 [] 연산자 두번 사용
 ```js
 matrix[][]
@@ -118,6 +131,7 @@ matrix[][]
 #### 8. 배열 메서드
 #### `join()` :
   배열의 모든 원소 문자열로 반환
+<<<<<<< Updated upstream
 #### `reserve()` : 
   배열의 원소 순서 뒤집어서 반환
 #### `sort()` :
@@ -126,13 +140,28 @@ matrix[][]
   기존 배열의 원소에 전달인자들을 추가한 새로운 배열 반환
 #### `slice()` : 
   부분배열 반환 
+=======
+#### `reserve()` :
+  배열의 원소 순서 뒤집어서 반환
+#### `sort()` :
+  전달인자 없으면 알파벳순 정렬
+#### `concat()` :
+  기존 배열의 원소에 전달인자들을 추가한 새로운 배열 반환
+#### `slice()` :
+  부분배열 반환
+>>>>>>> Stashed changes
   전달인자 2개 (시작위치, 끝위치)
 #### `splice()` :
   원소를 삽입하거나 원소를 제거 → 다른 메서드들과 달리 호출 대상 배열을 바로 수정
 #### `push() , pop()`
 #### `unshift() ,  shift()`
+<<<<<<< Updated upstream
 #### `toString() ,  toLocaleString()`  : 
   join() 과 동일 
+=======
+#### `toString() ,  toLocaleString()`  :
+  join() 과 동일
+>>>>>>> Stashed changes
 
 
 
@@ -150,12 +179,21 @@ matrix[][]
 
 #### 10. 배열 타입
 특정 객체가 배열인지 판단하기
+<<<<<<< Updated upstream
 ```js 
 ECMA5 
 Array.isArray()
 ```
 
 ECMAScript 5 이전엔 typeof가 모든 객체를 object로 반환 
+=======
+```js
+ECMA5
+Array.isArray()
+```
+
+ECMAScript 5 이전엔 typeof가 모든 객체를 object로 반환
+>>>>>>> Stashed changes
 ``` js
 [] instanceof Array // true
 {} instanceof Array // false
@@ -163,8 +201,13 @@ ECMAScript 5 이전엔 typeof가 모든 객체를 object로 반환
 ```
 
 객체의 class 속성을 검사하는 방법 (클래스 속성은 항상 Array 값을 가지고 있다)
+<<<<<<< Updated upstream
 ```js 
 ECMA 3 
+=======
+```js
+ECMA 3
+>>>>>>> Stashed changes
 var isArray = Function.isArray || function(o) {
   return typeof o === "object" &&
   Object.prototpye.toString.call(o) === "[objec Array]";
@@ -176,7 +219,11 @@ var isArray = Function.isArray || function(o) {
  - length프로퍼티와 양의 정수 이름의 프로퍼티가 있는 객체는 일종의 배열로 취급할 수 있다.
  - 배열 메서드는 배열 뿐 아니라 유사배열 객체에도 적용이 가능하도록 범용메서드로 구현되었다.
  - **하지만, 유사배열은 Array.prototype을 상속받지 않으므로 배열 메서드를 해당 객체의 메서드로 호출할 수는 없고, Function.call 메서드를 통해야 한다.**
+<<<<<<< Updated upstream
  
+=======
+
+>>>>>>> Stashed changes
   ```js
   var a = {"0":"a", "1":"b", "2":"c", length:3};  // An array-like object
   Array.prototype.join.call(a, "+")  // => "a+b+c"
@@ -190,15 +237,25 @@ var isArray = Function.isArray || function(o) {
 #### 12. 문자열을 배열처럼 사용하기
 **`대부분의 최근 브라우저에서는 문자열은 읽기 전용 배열`**
 ```js
+<<<<<<< Updated upstream
 각 문자 접근 방법 : charAt() 또는 [] 
 typeof 문자열 // "string"
 Array.isArray(문자열) //false 
+=======
+각 문자 접근 방법 : charAt() 또는 []
+typeof 문자열 // "string"
+Array.isArray(문자열) //false
+>>>>>>> Stashed changes
 ```
 **`문자열에 범용 배열 메서드들을 바로 사용할 수 있다!`**
 ```js
 s = "JavaScript";
 Array.prototype.join.call(s," "); // "J a v a S c r i p t"
+<<<<<<< Updated upstream
 Array.prototype.filter.call(s, 
+=======
+Array.prototype.filter.call(s,
+>>>>>>> Stashed changes
   function(x) {
     return x.match(/[^aeiou]/);
   }).join(""); //문자열에서 모음 제거 "JvScrpt"
