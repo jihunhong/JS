@@ -1,4 +1,4 @@
-###&#128570; Window 객체 (CHAPTER.14)
+### &#128570; Window 객체 (CHAPTER.14)
 
   ___window 객체?___
 
