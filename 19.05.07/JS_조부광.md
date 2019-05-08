@@ -122,9 +122,97 @@ ___window.onerror(함수)___
 ( 세개의 인자를 받는다 : 메세지, url, line )
 
 #### 7. Window 프로퍼티의 문서요소
-    HTML 문서상의 어떤 요소에 id 속성을 부여했고
-    Window 객체에 같은 이름의 프로퍼티가 이미 존재하지 않는다면,
-    이 요소의 id속성을 이름으로 하고 해당 요소를 나타내는 HTMLElement 객체를
-    값으로 가지는 포로퍼티가 window객체에 제공된다.
+   HTML 문서상의 어떤 요소에 id 속성을 부여했고
+  Window 객체에 같은 이름의 프로퍼티가 이미 존재하지 않는다면,
+  이 요소의 id속성을 이름으로 하고 해당 요소를 나타내는 HTMLElement 객체를
+  값으로 가지는 포로퍼티가 window객체에 제공된다.
+  <br/>
+  ![](./image/document01(ch14).png)
 
 #### 8. 다중 창과 프레임
+
+    + 한 탭은 다른 탭과 단절된 독립적인 window객체 갖는다.
+    + 하나의 탭에서 다른 탭이 존재하는지 알 수 없고,
+    다른 탭들의 Window 객체나 문서 내용을 조작할 수 없다.
+    + 그러나, 모든 창이 그런건 아니다.
+    하나의 탭에서 스크립트로 새창 혹은 새 탭을 열 수 있고,
+    그런 경우 원래의 창과 다른 창, 다른 창의 문서와 상호작용 할 수 있다.
+
+###### 창 열고 닫기
+- open(인자1, 인자2, 인자3, 인자4) :  새 웹브라우저 창 혹은 탭을 열 수 있다.
+  ```
+   - 인자 1 : 새 창에 표시될 문서의 url  (생략되면 about:blank)
+   - 인자 2 : 창의 이름을 가리키는 문자열 (생략되면 \_blank)
+      ※ 하나의 창이 다른 창 내에 중첩되면 예약된 이름인 "_top"으로 최상위 창을,
+      "_parent"로 직계 부모 창을 사용할 수 있다.  
+   - 인자 3 : 새로 열릴 창의 크기와 기능 속성 목록을 콤마로 구분한 문자열  (비표준)
+   - 인자 4 : boolean값 (두번째 인자에 저정한 이름의 창이 이미 존재하는 상황에서 유용)
+      - true : 현재 창의 브라우징 히스토리를 인자1 url로 교체
+      - false : 새 브라우징 히스토리 생성
+  ```
+  ```js
+  var w = window.open(
+              "smallwin.html" ,
+              "smallwin",
+              "width=400, height=350, status=yes, resizable=yes");
+  ```    
+- open() 메서드의 반환 값은 해당 url을 가리키는 window 객체
+  ```js
+  var w = window.open();
+  w.alert('테스트');
+  w.location = "https://naver.com"
+  w.close();
+  ```
+- close() : 창(혹은 탭) 닫기.
+  Document객체의 close()와 구분되도록 명시적으로 window.close() 라고 쓴다.
+  - 해당 자바스크립트 코드가 실행되고 있는 창 내에서만 자동으로 닫기를 허용하고, 최상위 창이나 탭을 닫으려 하면 작동하지 않는다.
+  - 창이 닫힌 후에도 Window객체는 존재하며, closed 프로퍼티 값이 true, document는 null 이 된다.
+
+###### 프레임 간의 관계
+- open() 메서드로 새롭게 생선된 Window 객체는
+  원본 창 객체를 가리키는 opener 프로퍼티를 가지고 있다. 혹은 parent 프로퍼티로도 상위 객체 접근 가능.
+  이런 식으로 서로 참조 가능, 상대방의 메서드를 호출할 수도 있다.
+
+  ```js
+  프레임에서 프레임의 Window객체를 참조할때 : parent
+  parent.history.back();
+  중첩에 상관없이 최상위 Window객체를 참조할 때 : top
+  top.history.back();
+  (최상위 일 때는 자기 자신을 가리킴)
+  ```
+
+- 하위 프레임 참조하기
+   ```js
+   //자식 프레임 참조
+   <iframe id="f1"></iframe>
+   var ifEle = document.getElementById("f1");
+   var chileFrame = ifEle.contentWindow; // 해당 프레임의 Window객체를 가리킴
+   //자식 프레임 목록인 frames 프로퍼티
+   frames[0] // 첫 번째 자식 프레임
+   frames[1].framse[2] // 두 번째 자식 프레임 내부에 존재하는 세 번째 자식 프레임
+   // <iframe>에 이름을 지정했다면 이름으로도 찾을 수 있다.
+   <iframe name="f1"></iframe>
+   frames.f1
+   ```
+
+
+###### 창들과 상호작용하는 자바스크립트
+  _위에 설명한 바와 같이 프레임들이 서로 참조할 수 있다면, 상호작용도 가능하다_
+  웹 페이지에 A와 B라는 이름의 <iframe> 요소가 존재 할 때
+  ```js
+    //프레임A
+    var i = 3;
+    //window객체의 전역변수임
+    window.i;  // 3
+    //프레임B
+    parent.A.i = 4; //A에 있는 변수의 값을 바꿀 수 있다.
+    function f(){
+      console.log('this is f()');
+    }
+    //프레임A
+    parent.B.f(); //A에서 B의 함수 호출 가능
+  ```
+
+- 각 창에는 생성자와 prototype 객체의 독립적인 복사본이 존재한다.
+  ex) 각 창에는 각자의 String() 생성자와 String.prototype 객체를 갖고 있다.
+  따라서, 현재 창에서 문자열을 조작하는 새로운 메소드를 정의하고 String.prototype 객체에 할당했다고 해도, 다른 창에서는 그 메소드를 사용할 수 없다.
