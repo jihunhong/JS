@@ -173,7 +173,18 @@ n.parentNode.replaceChild(document.createTextNode("[REDACTED]"), n);
 > 다른 노드를 담는 임시 컨테이너 역할을 하는 특수 목적의 노드.
 
 ✔️ 다른 문서의 일부분이 아닌 Document 노드 처럼 홀로 존재하는 노드. => parentNode가 항상 null이다.
-✔️ 하지만 Element처럼, appendChild()와 insertBefore() 등으로 조작할 수 있는 자손 객체를 가질 수 있다.
+✔️ 하지만 Element처럼, appendChild()와 insertBefore(), replaceChild() 의 전달인자로 넘기면, 해당 객체가 아닌
+객체의 자식이 문서에 삽입된다.
+```js
+function reverse(n) {
+	var f = document.createDocumentFragment();
+
+	while(n.lastChild) f.appendChild(n.lastChild);
+	//f에 추가하면 n에서는 지워진다.
+	//끝으로 
+	n.appendChild(f);
+
+}
 
 ## HTML 폼
 > JS가 있기전인 웹 초창기 부터 존재하던 클라이언트의 중요한 방식.
@@ -190,6 +201,12 @@ n.parentNode.replaceChild(document.createTextNode("[REDACTED]"), n);
 	> HTML name 속성에 명시 되어있는 읽기 전용 문자열
 
 #### `value`
-	> 폼 관련 요소에 포함되거나 출력된 값을 명시한 일고 쓰기가 가능한 문자열.
+> 폼 관련 요소에 포함되거나 출력된 값을 명시한 일고 쓰기가 가능한 문자열.
 
-	Text/Textarea
+	- `Text/Textarea`         : 사용자가 입력한 텍스트
+	- `<input type="button">` : 버튼에 출력된 텍스트
+	- `radio / checkbox`      : value 프로퍼티 사용 불가
+
+	✔️ 폼 전송과 폼관련 요소와 연결된 확정 데이터를 조작하는데 의의가 있는 프로퍼티들이다.
+
+### 폼과 관련된 이벤트 핸들러
