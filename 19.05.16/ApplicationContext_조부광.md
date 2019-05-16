@@ -6,6 +6,7 @@
 ## Application Context
 
 _빈 팩토리 (BeanFactory) : 빈의 생성과 관계설정 같은 제어를 담당하는 IoC오브젝트_
+
 __어플리케이션 컨택스트는 IoC방식을 따라 만들어진 일종의 빈 팩토리이며, 스프링이 제공하는 애플리케이션 지원 기능을 모두 포함해서 이야기 하는 것이다.__
  - 애플리케이션 전반에 걸쳐 모든 구성요소의 제어 작업을 담당하는 범용적인 IoC엔진
  - 애플리케이션 컨텍스트 = IoC 컨테이너 = 스프링 컨테이너 = 빈 팩토리
@@ -35,6 +36,7 @@ __4. WebApplicationContext__
 ## web.xml 기본설정
 
 __1. DispatcherServlet__
+
 DispatherServlet은 클라이언트의 요청을 전달받는 서블릿으로서, 컨트롤러나 뷰와 같은 스프링 MVC의 구성 요소를 이용하여 클라이언트에게 서비스를 제공
 
 - DispatherServlet의 설정은 웹 어플리케이션의 /WEB-INF/web.xml 파일에 추가하며, 다음과 같이 서블릿과 매핑 정보를 추가하면 DispatherServlet 설정이 완료된다.
@@ -64,6 +66,7 @@ __2. ContextLoaderListener__
 ![](https://t1.daumcdn.net/cfile/tistory/2309EC49548C4B8925)
 
 __3. 설정 파일 순서__ 
+
  설정 파일을 복수로 사용할 때에는, 설정 파일을 읽는 순서가 중요하다. 설정 파일 A에서 참조하는 bean을 다른 설정 파일 B에 정의하고 있는 경우, A보다 먼저 B를 읽지 않으면 오류가 일어난다.
 
 
