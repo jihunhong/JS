@@ -24,7 +24,7 @@ __2. GenericApplicationContext__
   - XmlBeanDefinitionReader를 이용해 빈 설정정보를 읽어들인다.
 
 __3. GenericXmlApplicationContext__
-  - 코드에서 GenericXmlApplicationContext를 사용하는 경우, 번거롭게 XmlBeanDefinitionReader를 직접 만들지 말고， 이 두 개의 클래스가 결합된 GenericXmlApplicationContext를 사용하면 편리하다.  
+  - 코드에서 GenericApplicationContext를 사용하는 경우, 번거롭게 XmlBeanDefinitionReader를 직접 만들지 말고， 이 두 개의 클래스가 결합된 GenericXmlApplicationContext를 사용하면 편리하다.  
   - GenericXmlApplicationContext는 XmlBeanDefinitionReader를 내장하고 있기 때문에， XML 파일을 읽어들이고 refresh()를 통해 초기화하는 것까지 한 줄로 끝낼 수 있다.
 
 __4. WebApplicationContext__
